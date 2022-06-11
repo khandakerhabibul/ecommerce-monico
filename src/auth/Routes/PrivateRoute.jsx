@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet, Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { SIGN_IN_ROUTE } from '../../routes/routes'
 
 const useAuth = () => {
@@ -10,9 +10,9 @@ const useAuth = () => {
   return false
 }
 
-function PrivateRoute() {
+function PrivateRoute({ component: Component }) {
   const user = useAuth()
-  return user ? <Outlet /> : <Navigate to={`/${SIGN_IN_ROUTE}`} />
+  return user ? Component : <Navigate to={`/${SIGN_IN_ROUTE}`} />
 }
 
 export default PrivateRoute
